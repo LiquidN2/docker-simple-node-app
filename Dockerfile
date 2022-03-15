@@ -4,11 +4,14 @@ FROM node:17-alpine
 # Specify the directory
 WORKDIR /usr/app
 
-# COPY all the files in the current dir to the container
-COPY ./ ./
+# COPY the package.json file for dependency installation
+COPY ./package.json ./package-lock.json ./
 
 # Install dependencies
 RUN npm install
+
+# COPY the project files
+COPY ./ ./
 
 # Default command
 CMD ["npm", "start"]
